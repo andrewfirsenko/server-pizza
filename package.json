@@ -1,19 +1,19 @@
 {
-  "name": "test",
+  "name": "server-pizza",
   "version": "1.0.0",
-  "description": "Test",
+  "description": "Server for innoscripta",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "author": "Andrew Firsenko <andrewfirsenko@gmail.com>",
-  "license": "ISC",
   "dependencies": {
-    "chalk": "^3.0.0",
+    "express": "^4.17.1",
     "mysql2": "^2.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
-  }
+  },
+  "author": "Andrew Firsenko <andrewfirsenko@gmail.com>",
+  "license": "ISC"
 }

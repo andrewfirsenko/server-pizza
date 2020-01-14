@@ -1,24 +1,43 @@
-const http = require('http');
+const express = require('express');
 const mysql = require('mysql2');
 
+const app = express();
 let connection;
 
 
-const server = http.createServer((req, res) => {
-    const {correct, data} = parseReq(req);
-    if (correct) {
-        query(res, data);
-    } else {
-        err(res, data);
-    }
+app.get('/', function (req, res) {
+    query(res, 'SELECT * FROM db_menu.pizza');
 });
 
-server.listen(3000, () => {
+app.listen(3000, () => {
     console.log('Server started');
     createConnectionDB();
     connectionDB();
 });
 
+// const http = require('http');
+// const express = require('express');
+//
+// const app = express();
+//
+// const server = http.createServer((req, res) => {
+//     // app.get('/', (req, res) => {
+//     //     query(res, 'SELECT * FROM db_menu.pizza');
+//     // });
+//     const {correct, data} = parseReq(req);
+//     if (correct) {
+//         query(res, data);
+//     } else {
+//         err(res, data);
+//     }
+// });
+//
+// server.listen(3000, () => {
+//     console.log('Server started');
+//     createConnectionDB();
+//     connectionDB();
+// });
+//
 function createConnectionDB() {
     connection = mysql.createConnection({
         host: 'localhost',
@@ -49,16 +68,11 @@ function query(res, sql) {
     });
 }
 
-function err(res, message) {
-    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end(message);
-}
-
-function parseReq(req) {
-    switch (req.url) {
-        case '/menu':
-            return {correct: true, data: 'SELECT * FROM db_menu.pizza'};
-        default:
-            return {correct: false, data: 'Error url'};
-    }
-}
+// function parseReq(req) {
+//     switch (req.url) {
+//         case '/menu':
+//             return {correct: true, data: 'SELECT * FROM db_menu.pizza'};
+//         default:
+//             return {correct: false, data: 'Error url'};
+//     }
+// }
